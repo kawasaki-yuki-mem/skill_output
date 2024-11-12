@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import json
+from snowflake.snowpark import Session
 
 # ファイルアップロード
 file = st.file_uploader("アクセスログをアップロードしてください。")
