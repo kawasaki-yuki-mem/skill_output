@@ -3,10 +3,10 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 
-# connect to Snowflake
-with open('creds.json') as f:
-  connection_parameters = json.load(f)  
-session = Session.builder.configs(connection_parameters).create()
+# # connect to Snowflake
+# with open('creds.json') as f:
+#   connection_parameters = json.load(f)  
+# session = Session.builder.configs(connection_parameters).create()
 
 
 # ファイルアップロード
@@ -21,8 +21,12 @@ if orgdata_view:
   st.write(file_df)
 
   upload_button = st.button('アップロードする')
-  file_df = pd.read_csv(file)
   
   if upload_button:
+    # connect to Snowflake
+    with open('creds.json') as f:
+      connection_parameters = json.load(f)  
+    session = Session.builder.configs(connection_parameters).create()
+    file_df = pd.read_csv(file)
     snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
     st.success('アップロード完了!', icon="✅")
