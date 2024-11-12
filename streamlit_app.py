@@ -9,7 +9,7 @@ file = st.sidebar.file_uploader("アクセスログをアップロードして�
 # データを閲覧するボタン
 orgdata_view = st.sidebar.button('データを閲覧する')
 
-# データ閲覧ボタンを押した場合
+# データ閲覧ボタンを押した場合、データ閲覧
 if orgdata_view:
   file_df = pd.read_csv(file)
   st.write(file_df)
@@ -17,7 +17,7 @@ if orgdata_view:
 # Snowflakeにデータアップロードするボタン
 upload_button = st.sidebar.button('アップロードする')
 
-# データアップロードボタンを押した場合
+# データアップロードボタンを押した場合、Snowflakeにデータアップロード
 if upload_button:
   
   # Snowflakeの資格情報を読み取る
@@ -25,7 +25,9 @@ if upload_button:
     connection_parameters = json.load(f)  
   session = Session.builder.configs(connection_parameters).create()
 
-  # # 
-  # file_df = pd.read_csv(file)
+  # アップロードするデータ
+  file_df = pd.read_csv(file)
+
+  # Snowflakeにデータアップロード
   snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
   st.success('アップロード完了!', icon="✅")
