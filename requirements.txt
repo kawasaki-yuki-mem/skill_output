@@ -2,4 +2,3 @@
 snowflake_snowpark-python
 streamlit
 pandas
-json
