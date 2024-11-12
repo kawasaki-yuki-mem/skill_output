@@ -25,7 +25,7 @@ if upload_button:
     connection_parameters = json.load(f)  
   session = Session.builder.configs(connection_parameters).create()
 
-  # 
-  file_df = pd.read_csv(file)
+  # # 
+  # file_df = pd.read_csv(file)
   snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
   st.success('アップロード完了!', icon="✅")
