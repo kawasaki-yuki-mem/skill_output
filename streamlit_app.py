@@ -31,3 +31,7 @@ if upload_button:
   # Snowflakeにデータアップロード
   snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
   st.success('アップロード完了!', icon="✅")
+
+# 参考
+# Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
+# サイドメニュー　https://qiita.com/sumikei11/items/e3a567e69c7a86abeaa2
