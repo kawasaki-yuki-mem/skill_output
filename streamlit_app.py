@@ -10,17 +10,17 @@ from snowflake.snowpark import Session
 
 
 # ファイルアップロード
-file = st..sidebar.file_uploader("アクセスログをアップロードしてください。", type={"csv"})
+file = st.sidebar.file_uploader("アクセスログをアップロードしてください。", type={"csv"})
 
 # データを閲覧するボタン
-orgdata_view = st..sidebar.button('データを閲覧する')
+orgdata_view = st.sidebar.button('データを閲覧する')
 
 # データ閲覧ボタンを押した場合
 if orgdata_view:
   file_df = pd.read_csv(file)
   st.write(file_df)
 
-upload_button = st..sidebar.button('アップロードする')
+upload_button = st.sidebar.button('アップロードする')
   
 if upload_button:
   # connect to Snowflake
