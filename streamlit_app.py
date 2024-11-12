@@ -17,7 +17,7 @@ orgdata_view = st.button('データを閲覧する')
 
 # データ閲覧ボタンを押した場合
 if orgdata_view:
-  df = pd.read_csv(file)
+  file_df = pd.read_csv(file)
   st.write(df)
 
   upload_button = st.button('アップロードする')
