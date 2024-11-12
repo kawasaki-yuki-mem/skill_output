@@ -21,6 +21,7 @@ if orgdata_view:
   st.write(file_df)
 
   upload_button = st.button('アップロードする')
+  file_df = pd.read_csv(file)
   
   if upload_button:
     snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
