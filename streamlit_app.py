@@ -24,3 +24,4 @@ if orgdata_view:
   
   if upload_button:
     snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
+    st.success('アップロード完了!', icon="✅")
