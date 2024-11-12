@@ -8,8 +8,12 @@ file = st.file_uploader("アクセスログをアップロードしてくださ�
 # データを閲覧するボタン
 orgdata_view = st.button('データを閲覧する')
 
-cnx = st.connection("snowflake")
-session = cnx.session()
+# cnx = st.connection("snowflake")
+# session = cnx.session()
+
+with open('creds.json') as f:
+    connection_parameters = json.load(f)  
+session = Session.builder.configs(connection_parameters).create()
 
 # データ閲覧ボタンを押した場合
 if orgdata_view:
