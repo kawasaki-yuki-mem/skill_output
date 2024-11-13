@@ -21,6 +21,7 @@ if orgdata_view:
   file_df = pd.read_csv(file)
   st.write(file_df)
 
+file_df = pd.read_csv(file)
 columns = st.selectbox("選択してください。", file_df.columns)
 
 
