@@ -109,8 +109,7 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    st.subheader("4. 各データの分布を確認")
-    if etl_df is not None:
+    if etl_df is None:
       st.subheader("4. 各データの分布を確認")
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list_edit = st.multiselect('x軸のカラムを選択してください'
@@ -120,8 +119,7 @@ try:
       
       if viz_edit == '折れ線グラフ':
         st.bar_chart(etl_df[x_list].select_dtypes(include='number'), etl_df[y_list].select_dtypes(include='number'))
-    elif etl_df is None:
-      st.subheader("4. 各データの分布を確認")
+    elif etl_df is not None:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list_org = st.multiselect('x軸のカラムを選択してください'
                                    , df.columns)
