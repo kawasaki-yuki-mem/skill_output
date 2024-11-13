@@ -39,7 +39,7 @@ try:
     st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 合計欠損値数  :  {df.isnull().sum().sum()}")
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
-    st.sidebar.write("### ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー")
+    st.sidebar.write("### ーーーーーーーーー")
     
   
   # 要約統計量の表示
