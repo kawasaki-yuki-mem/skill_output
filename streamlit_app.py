@@ -51,11 +51,22 @@ try:
   st.subheader("3. ETL処理")
   if uploaded_file is not None:
     st.write("##### 重複処理")
-    if df.duplicated().sum().sum() == 0:
-      st.success('重複行がありません', icon="✅")
-    else:
-      df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
+    dup_on_button = st.button('重複行を消す')
+    dup_off_button = st.button('重複行を消さない')
+    if dup_on_button:
+      if df.duplicated().sum().sum() == 0:
+        st.success('重複行がありません', icon="✅")
+      else:
+        df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
+        st.dataframe(df)
+        
+    if dup_off_button:
       st.dataframe(df)
+    # if df.duplicated().sum().sum() == 0:
+    #   st.success('重複行がありません', icon="✅")
+    # else:
+    #   df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
+    #   st.dataframe(df)
 
 
     st.write("##### 欠損値処理")
