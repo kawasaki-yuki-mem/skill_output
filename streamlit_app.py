@@ -33,7 +33,7 @@ try:
     st.sidebar.write("各カラムの欠損値")
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_df)
-    st.sidebar.write(f"### 合計欠損値数  :  {sum(df.isnull().sum())}")
+    st.sidebar.write(f"### 合計欠損値数  :  {df.isnull().sum().sum()}")
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
     
 
@@ -72,7 +72,7 @@ try:
     st.sidebar.write("各カラムの欠損値")
     null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_etl_df)
-    st.sidebar.write(f"### 合計欠損値数  :  {sum(elt_df.isnull().sum())}")
+    st.sidebar.write(f"### 合計欠損値数  :  {elt_df.isnull().sum().sum())}")
     st.sidebar.write(f"### 重複行の数  :  {elt_df.duplicated().sum().sum()}")
       
   # 4. 各データの分布/割合を確認
