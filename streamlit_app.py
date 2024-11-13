@@ -55,7 +55,7 @@ try:
     zero_button = st.button('ゼロ埋め')
     mean_button = st.button('平均値埋め')
     if del_button:
-      etl_df = df.dropna(axis=1)
+      etl_df = df.dropna(axis=0)
       st.dataframe(etl_df)
     elif zero_button:
       etl_df = df.fillna(0)
