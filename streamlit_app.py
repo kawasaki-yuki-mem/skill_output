@@ -123,7 +123,7 @@ try:
                                    , etl_df.columns)
 
     if viz == '折れ線グラフ':
-      st.scatter_chart([x_list, y_list].select_dtypes(include='number'))
+      st.scatter_chart(x_list, y_list)
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
