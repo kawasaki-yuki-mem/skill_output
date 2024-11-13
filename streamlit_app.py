@@ -108,7 +108,8 @@ try:
   st.write("#")
   st.subheader("4. 各データの分布を確認")
 
-  # if uploaded_file is not None:
+  if uploaded_file is not None:
+    st.line_chart(etl_df)
     
   
   # 5. Snowflakeにデータアップロード
