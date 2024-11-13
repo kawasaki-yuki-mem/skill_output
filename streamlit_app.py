@@ -109,7 +109,7 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    st.line_chart(df)
+    st.line_chart(df.select_dtypes(include='number'))
 
     # if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
     #   viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
