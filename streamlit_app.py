@@ -110,16 +110,16 @@ try:
 
   if uploaded_file is not None:
     if etl_df is not None:
-      viz = st.selectbox("選択してください", ['折れ線グラフ'])
-      x_list = st.multiselect('x軸のカラムを選択してください'
+      viz_edit = st.selectbox("選択してください", ['折れ線グラフ'])
+      x_list_edit = st.multiselect('x軸のカラムを選択してください'
                                  , etl_df.columns)
-      y_list = st.multiselect('y軸のカラムを選択してください'
+      y_list_edit = st.multiselect('y軸のカラムを選択してください'
                                  , etl_df.columns)
-    if df is not None:
-      viz = st.selectbox("選択してください", ['折れ線グラフ'])
-      x_list = st.multiselect('x軸のカラムを選択してください'
+    elif df is not None:
+      viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
+      x_list_org = st.multiselect('x軸のカラムを選択してください'
                                    , df.columns)
-      y_list = st.multiselect('y軸のカラムを選択してください'
+      y_list_org = st.multiselect('y軸のカラムを選択してください'
                                    , df.columns)
 
     if viz == '折れ線グラフ':
