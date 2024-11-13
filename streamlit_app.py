@@ -22,15 +22,15 @@ try:
   
   # サイドバーの設定
   st.sidebar.write("# データサンプルサイズ")
-  st.sidebar.write("##")
-  st.sidebar.write("### 欠損値")
-  st.sidebar.write("各カラムの欠損値")
   
   if uploaded_file is not None:
     st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
     st.sidebar.write(f"### カラム数      :  {df.shape[1]}")
 
     # 欠損値の表示
+    st.sidebar.write("##")
+    st.sidebar.write("### 欠損値")
+    st.sidebar.write("各カラムの欠損値")
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_df)
     
@@ -38,12 +38,7 @@ try:
     # 要約統計量の表示
     st.write("###")
     st.write("##### 要約統計量 (数値データのみ)")
-    
-    # TODO: カテゴリ変数に対応したいが、時系列データはdescribeでエラーをはくので、要改善
-    # st.write(df.describe())
     st.dataframe(df.describe())
-
-    st.sidebar.write("# データサンプルサイズ")
 
     # 3. ETL処理
     st.write("#")
