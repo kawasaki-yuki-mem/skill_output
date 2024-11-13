@@ -39,6 +39,7 @@ try:
     st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 合計欠損値数  :  {df.isnull().sum().sum()}")
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
+    st.sidebar.write("### ----------------------")
     
   
   # 要約統計量の表示
@@ -49,6 +50,7 @@ try:
   # 3. ETL処理
   st.write("#")
   st.subheader("3. ETL処理")
+  
   if uploaded_file is not None:
     st.write("##### 重複処理")
     if df.duplicated().sum().sum() == 0:
@@ -104,6 +106,9 @@ try:
   # 4. 各データの分布/割合を確認
   st.write("#")
   st.subheader("4. 各データの分布を確認")
+
+  if uploaded_file is not None:
+    
   
   # 5. Snowflakeにデータアップロード
   st.write("#")
