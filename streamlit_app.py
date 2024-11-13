@@ -62,6 +62,8 @@ try:
     if mean_button:
       mean_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(mean_df)
+    
+    st.sidebar.write(f"### 合計欠損値数  :  {df.duplicated().sum().sum())}")
       
   # 4. 各データの分布/割合を確認
   st.write("#")
