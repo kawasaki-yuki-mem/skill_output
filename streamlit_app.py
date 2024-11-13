@@ -25,7 +25,7 @@ try:
   
   if uploaded_file is not None:
     st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
-    st.sidebar.write(f"### カラム数      :  {df.shape[1]}")
+    st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
 
     # 欠損値の表示
     st.sidebar.write("##")
@@ -33,7 +33,7 @@ try:
     st.sidebar.write("各カラムの欠損値")
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_df)
-    t.sidebar.write(f"### 合計欠損値数      :  {sum(df.isnull().sum())}")
+    st.sidebar.write(f"### 合計欠損値数  :  {sum(df.isnull().sum())}")
     
 
   # 要約統計量の表示
