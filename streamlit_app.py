@@ -45,7 +45,7 @@ try:
   st.write("#")
   st.subheader("3. ETL処理")
   if uploaded_file is not None:
-    if df.duplicated().sum().sum() = 0:
+    if df.duplicated().sum().sum() == 0:
       st.success('重複行がありません', icon="✅")
     else:
       st.write("##### 重複処理")
@@ -53,7 +53,7 @@ try:
       st.dataframe(df)
     
     st.write("##### 欠損値処理")
-    if df.isnull().sum().sum() = 0:
+    if df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
       del_button = st.button('列ごと削除')
