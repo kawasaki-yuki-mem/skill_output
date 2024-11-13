@@ -24,9 +24,9 @@ try:
   st.sidebar.write("# データサンプルサイズ")
   
   if uploaded_file is not None:
+    st.sidebar.write("### ETL処理前")
     st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
     st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
-
     # 欠損値の表示
     st.sidebar.write("##")
     st.sidebar.write("### 欠損値")
@@ -62,8 +62,10 @@ try:
     if mean_button:
       etl_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(etl_df)
-    null_df = pd.DataFrame(elt_df.isnull().sum(), columns=["null"])
-    st.sidebar.dataframe(null_df)
+    # null_df = pd.DataFrame(elt_df.isnull().sum(), columns=["null"])
+
+    
+    # st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
       
   # 4. 各データの分布/割合を確認
