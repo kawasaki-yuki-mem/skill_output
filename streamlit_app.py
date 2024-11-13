@@ -75,7 +75,13 @@ try:
           etl_df = df.fillna(df.mean(numeric_only=True))
           st.dataframe(etl_df)
       else:
-        st.write("## 欠損値処理をしない")
+        except:
+            st.error(
+              """
+              欠損値処理をしない
+              """
+            )
+
 
       if etl_df is not None:
         st.sidebar.write("##")
