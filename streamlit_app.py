@@ -12,16 +12,16 @@ st.markdown("""
 
 # ファイルアップロード
 file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
-file_df = pd.read_csv(file)
 
 # データを閲覧するボタン
 orgdata_view = st.sidebar.button('データを閲覧する')
 
 # データ閲覧ボタンを押した場合、データ閲覧
 if orgdata_view:
+  file_df = pd.read_csv(file)
   st.write(file_df)
 
-
+columns = st.selectbox("選択してください。", file_df.columns)
 
 
 
