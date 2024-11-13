@@ -62,7 +62,6 @@ try:
     if df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
-      st.write("##### 欠損値処理")
       miss_drop = st.selectbox("選択してください", ['列ごと削除', 'ゼロ埋め', '平均値埋め'])
       # if del_button or zero_button or mean_button:
       if miss_drop == '列ごと削除':
