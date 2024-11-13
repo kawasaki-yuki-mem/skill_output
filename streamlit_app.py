@@ -39,7 +39,7 @@ try:
     st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 合計欠損値数  :  {df.isnull().sum().sum()}")
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
-    st.sidebar.write("----------------------")
+    st.sidebar.write("### ----------------------")
     
   
   # 要約統計量の表示
@@ -107,7 +107,7 @@ try:
   st.write("#")
   st.subheader("4. 各データの分布を確認")
 
-  if uploaded_file is not None:
+  # if uploaded_file is not None:
     
   
   # 5. Snowflakeにデータアップロード
