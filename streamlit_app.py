@@ -35,22 +35,36 @@ try:
     st.sidebar.dataframe(null_df)
     
 
-    # 要約統計量の表示
-    st.write("###")
-    st.write("##### 要約統計量 (数値データのみ)")
-    st.dataframe(df.describe())
+  # 要約統計量の表示
+  st.write("###")
+  st.write("##### 要約統計量 (数値データのみ)")
+  st.dataframe(df.describe())
 
-    # 3. ETL処理
-    st.write("#")
-    st.subheader("3. ETL処理")
+  # 3. ETL処理
+  st.write("#")
+  st.subheader("3. ETL処理")
 
-    # 4. 各データの分布/割合を確認
-    st.write("#")
-    st.subheader("4. 各データの分布を確認")
+  # 4. 各データの分布/割合を確認
+  st.write("#")
+  st.subheader("4. 各データの分布を確認")
 
-    # 5. Snowflakeにデータアップロード
-    st.write("#")
-    st.subheader("5. Snowflakeにデータアップロード")
+  # 5. Snowflakeにデータアップロード
+  st.write("#")
+  st.subheader("5. Snowflakeにデータアップロード")
+  if uploaded_file is not None:
+    # Snowflakeにデータアップロードするボタン
+    upload_button = st.sidebar.button('アップロードする')
+    
+    # データアップロードボタンを押した場合、Snowflakeにデータアップロード
+    if upload_button:
+      # Snowflakeの資格情報を読み取る
+      with open('creds.json') as f:
+        connection_parameters = json.load(f)  
+      session = Session.builder.configs(connection_parameters).create()
+    
+      # Snowflakeにデータアップロード
+      snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
+      st.success('アップロード完了!', icon="✅")
 
 except:
     st.error(
@@ -59,26 +73,6 @@ except:
       """
     )
 
-
-
-
-
-
-
-  # Snowflakeにデータアップロードするボタン
-  # upload_button = st.sidebar.button('アップロードする')
-  
-  # # データアップロードボタンを押した場合、Snowflakeにデータアップロード
-  # if upload_button:
-    
-  #   # Snowflakeの資格情報を読み取る
-  #   with open('creds.json') as f:
-  #     connection_parameters = json.load(f)  
-  #   session = Session.builder.configs(connection_parameters).create()
-  
-  #   # Snowflakeにデータアップロード
-  #   snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
-  #   st.success('アップロード完了!', icon="✅")
 
 # 参考
 # Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
