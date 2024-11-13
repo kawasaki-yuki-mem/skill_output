@@ -18,10 +18,10 @@ if file is not None:
   df = pd.read_csv(file)
   st.dataframe(df)
 
-  null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
+  null_df = pd.DataFrame(df.isnull().sum())
   st.dataframe(null_df)
 
-  null_df_all = pd.DataFrame(df.isnull(), columns=["null"])
+  null_df_all = pd.DataFrame(df.isnull())
   st.dataframe(null_df_all)
   
   
