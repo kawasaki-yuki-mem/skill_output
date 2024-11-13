@@ -144,8 +144,13 @@ try:
       session = Session.builder.configs(connection_parameters).create()
     
       # Snowflakeにデータアップロード
-      snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
-      st.success('アップロード完了!', icon="✅")
+      if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
+        snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
+        st.success('アップロード完了!', icon="✅")
+        
+      elif etl_df is not None:
+        snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
+        st.success('アップロード完了!', icon="✅")
 except:
     st.error(
       """
