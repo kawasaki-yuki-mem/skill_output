@@ -58,7 +58,7 @@ try:
       etl_df = df.dropna(axis=1)
       st.dataframe(etl_df)
     elif zero_button:
-      etl_df = df.fillna(0)
+      etl_df = df.fillna(0, numeric_only=True)
       st.dataframe(etl_df)    
     elif mean_button:
       etl_df = df.fillna(df.mean(numeric_only=True))
