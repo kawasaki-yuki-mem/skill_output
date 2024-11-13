@@ -61,7 +61,7 @@ try:
         df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
         st.dataframe(df)
         
-    elif dup_off_button:
+    if dup_off_button:
       st.dataframe(df)
 
     st.write("##### 欠損値処理")
@@ -99,7 +99,7 @@ try:
           st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
           st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
 
-    elif miss_off_button:
+    if miss_off_button:
       st.dataframe(df)
 
     if (df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0) or (dup_off_button and miss_off_button):
