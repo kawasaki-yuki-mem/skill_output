@@ -71,19 +71,19 @@ except:
 
 
   # Snowflakeにデータアップロードするボタン
-  upload_button = st.sidebar.button('アップロードする')
+  # upload_button = st.sidebar.button('アップロードする')
   
-  # データアップロードボタンを押した場合、Snowflakeにデータアップロード
-  if upload_button:
+  # # データアップロードボタンを押した場合、Snowflakeにデータアップロード
+  # if upload_button:
     
-    # Snowflakeの資格情報を読み取る
-    with open('creds.json') as f:
-      connection_parameters = json.load(f)  
-    session = Session.builder.configs(connection_parameters).create()
+  #   # Snowflakeの資格情報を読み取る
+  #   with open('creds.json') as f:
+  #     connection_parameters = json.load(f)  
+  #   session = Session.builder.configs(connection_parameters).create()
   
-    # Snowflakeにデータアップロード
-    snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
-    st.success('アップロード完了!', icon="✅")
+  #   # Snowflakeにデータアップロード
+  #   snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
+  #   st.success('アップロード完了!', icon="✅")
 
 # 参考
 # Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
