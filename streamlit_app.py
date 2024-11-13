@@ -34,6 +34,7 @@ try:
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 合計欠損値数  :  {sum(df.isnull().sum())}")
+    st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
     
 
   # 要約統計量の表示
@@ -56,17 +57,24 @@ try:
     if del_button:
       etl_df = df.dropna(axis=1)
       st.dataframe(etl_df)
-    if zero_button:
+    elif zero_button:
       etl_df = df.fillna(0)
       st.dataframe(etl_df)    
-    if mean_button:
+    elif mean_button:
       etl_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(etl_df)
-    # null_df = pd.DataFrame(elt_df.isnull().sum(), columns=["null"])
-
     
-    # st.sidebar.dataframe(null_df)
-    st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
+    st.sidebar.write("### ETL処理後")
+    st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
+    st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
+    # 欠損値の表示
+    st.sidebar.write("##")
+    st.sidebar.write("### 欠損値")
+    st.sidebar.write("各カラムの欠損値")
+    null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
+    st.sidebar.dataframe(null_etl_df)
+    st.sidebar.write(f"### 合計欠損値数  :  {sum(elt_df.isnull().sum())}")
+    st.sidebar.write(f"### 重複行の数  :  {elt_df.duplicated().sum().sum()}")
       
   # 4. 各データの分布/割合を確認
   st.write("#")
