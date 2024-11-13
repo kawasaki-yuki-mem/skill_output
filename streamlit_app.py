@@ -3,30 +3,66 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 
-# データアップロードの説明
-st.markdown(""" 
-## データをテーブル表示
-- 「Browse files」をクリックしてローカルにあるデータファイルを指定してアップロードしてください。  
-- 「データを閲覧する」をクリックしてアップロードされたデータファイルをテーブルで表示してください。
-""")
+st.write("#")
 
-# ファイルアップロード
-file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
+# 1. データを読み込む
+st.subheader("1. データをアップロードする")
+uploaded_file=st.file_uploader("csvファイルをアップロードしてください。", type='csv')
 
-if file is not None:
-  # データの閲覧
-  df = pd.read_csv(file)
+if uploaded_file is not None:
+  df = pd.read_csv(uploaded_file)
+    
+  # データの表示
   st.dataframe(df)
 
-  null_df = pd.DataFrame(df.isnull().sum())
-  st.dataframe(null_df)
-
-  null_df_all = df.isnull()
-  st.dataframe(null_df_all)
+try:
+  # 2. 要約統計量の確認
+  st.write("#")
+  st.subheader("2. 要約統計量の確認")
   
+  # サイドバーの設定
+  st.sidebar.write("# データサンプルサイズ")
+  st.sidebar.write("##")
+  st.sidebar.write("### 欠損値")
+  st.sidebar.write("各カラムの欠損値")
   
-  # columns = st.selectbox("選択してください。", file_df.columns)
+  if uploaded_file is not None:
+    st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
+    st.sidebar.write(f"### カラム数      :  {df.shape[1]}")
 
+    # 欠損値の表示
+    null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
+    st.sidebar.dataframe(null_df)
+    
+
+    # 要約統計量の表示
+    st.write("###")
+    st.write("##### 要約統計量 (数値データのみ)")
+    
+    # TODO: カテゴリ変数に対応したいが、時系列データはdescribeでエラーをはくので、要改善
+    # st.write(df.describe())
+    st.dataframe(df.describe())
+
+    st.sidebar.write("# データサンプルサイズ")
+
+    # 3. ETL処理
+    st.write("#")
+    st.subheader("3. ETL処理")
+
+    # 4. 各データの分布/割合を確認
+    st.write("#")
+    st.subheader("4. 各データの分布を確認")
+
+    # 5. Snowflakeにデータアップロード
+    st.write("#")
+    st.subheader("5. Snowflakeにデータアップロード")
+
+except:
+    st.error(
+      """
+      エラーが発生しました。
+      """
+    )
 
 
 
