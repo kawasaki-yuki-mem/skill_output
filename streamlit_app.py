@@ -145,11 +145,11 @@ try:
     
       # Snowflakeにデータアップロード
       if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
-        snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
+        snowparkDf=session.write_pandas(df,st.text_input("データファイル名を入力してください:"),auto_create_table = True, overwrite=True)
         st.success('アップロード完了!', icon="✅")
         
       elif etl_df is not None:
-        snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
+        snowparkDf=session.write_pandas(etl_df,st.text_input("データファイル名を入力してください:"),auto_create_table = True, overwrite=True)
         st.success('アップロード完了!', icon="✅")
 except:
     st.error(
