@@ -3,6 +3,13 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 
+st.title("アウトプット")
+st.write(
+    """
+    テーブル
+    """
+)
+
 # ファイルアップロード
 file = st.sidebar.file_uploader("アクセスログをアップロードしてください。", type={"csv"})
 
