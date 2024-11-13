@@ -52,10 +52,10 @@ try:
     if del_button:
       del_df = df.dropna(axis=1)
       st.dataframe(del_df)
-    elif zero_button:
+    if zero_button:
       zero_df = df.fillna(0)
       st.dataframe(zero_df)    
-    elif mean_button:
+    if mean_button:
       mean_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(mean_df)
       
