@@ -15,8 +15,8 @@ file = st.sidebar.file_uploader("データファイルをアップロードし�
 
 if file is not None:
   # データの閲覧
-  file_df = pd.read_csv(file)
-  st.dataframe(file_df)
+  df = pd.read_csv(file)
+  st.dataframe(df)
 
   null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
   st.dataframe(null_df)
