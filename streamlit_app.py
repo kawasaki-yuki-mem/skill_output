@@ -68,19 +68,21 @@ try:
       elif mean_button:
         etl_df = df.fillna(df.mean(numeric_only=True))
         st.dataframe(etl_df)
-    if etl_df is not None:
-      st.sidebar.write("##")
-      st.sidebar.write("### ETL処理後")
-      st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
-      st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
-      # 欠損値の表示
-      st.sidebar.write("### 欠損値")
-      st.sidebar.write("各カラムの欠損値")
-      null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
-      st.sidebar.dataframe(null_etl_df)
-      st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
-      st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
-    else:
+
+      if etl_df is not None:
+        st.sidebar.write("##")
+        st.sidebar.write("### ETL処理後")
+        st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
+        st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
+        # 欠損値の表示
+        st.sidebar.write("### 欠損値")
+        st.sidebar.write("各カラムの欠損値")
+        null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
+        st.sidebar.dataframe(null_etl_df)
+        st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
+        st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
+    
+    if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
       st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
@@ -91,6 +93,7 @@ try:
       st.sidebar.dataframe(null_df)
       st.sidebar.write(f"### 合計欠損値数  :  {df.isnull().sum().sum()}")
       st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
+
   # 4. 各データの分布/割合を確認
   st.write("#")
   st.subheader("4. 各データの分布を確認")
