@@ -109,7 +109,7 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    st.line_chart(etl_df)
+    st.line_chart(df)
     
   
   # 5. Snowflakeにデータアップロード
