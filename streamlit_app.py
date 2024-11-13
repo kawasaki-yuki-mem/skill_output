@@ -136,20 +136,22 @@ try:
     # Snowflakeにデータアップロードするボタン
     upload_button = st.button('アップロードする')
     
+    upload_data = st.text_input("データファイル名を入力してください:")
+    
     # データアップロードボタンを押した場合、Snowflakeにデータアップロード
     if upload_button:
       # Snowflakeの資格情報を読み取る
       with open('creds.json') as f:
         connection_parameters = json.load(f)  
       session = Session.builder.configs(connection_parameters).create()
-    
+
       # Snowflakeにデータアップロード
       if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
-        snowparkDf=session.write_pandas(df,st.text_input("データファイル名を入力してください:"),auto_create_table = True, overwrite=True)
+        snowparkDf=session.write_pandas(df, upload_data, auto_create_table = True, overwrite=True)
         st.success('アップロード完了!', icon="✅")
         
       elif etl_df is not None:
-        snowparkDf=session.write_pandas(etl_df,st.text_input("データファイル名を入力してください:"),auto_create_table = True, overwrite=True)
+        snowparkDf=session.write_pandas(etl_df, upload_data, auto_create_table = True, overwrite=True)
         st.success('アップロード完了!', icon="✅")
 except:
     st.error(
