@@ -86,6 +86,8 @@ try:
         st.sidebar.dataframe(null_etl_df)
         st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
         st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
+      else:
+        st.write('欠損値を処理しますか？')
     
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       st.sidebar.write("##")
