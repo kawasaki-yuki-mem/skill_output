@@ -33,6 +33,7 @@ try:
     st.sidebar.write("各カラムの欠損値")
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
     st.sidebar.dataframe(null_df)
+    t.sidebar.write(f"### 合計欠損値数      :  {sum(df.isnull().sum())}")
     
 
   # 要約統計量の表示
@@ -43,7 +44,21 @@ try:
   # 3. ETL処理
   st.write("#")
   st.subheader("3. ETL処理")
-
+  if uploaded_file is not None:
+    st.write("##### 欠損値処理")
+    del_button = st.button('列ごと削除')
+    zero_button = st.button('ゼロ埋め')
+    mean_button = st.button('平均値埋め')
+    if del_button:
+      del_df = df.dropna(axis=1)
+      st.dataframe(del_df)
+    elif zero_button:
+      zero_df = df.fillna(0)
+      st.dataframe(zero_df)    
+    elif mean_button:
+      mean_df = df.fillna(df.mean())
+      st.dataframe(mean_df)
+      
   # 4. 各データの分布/割合を確認
   st.write("#")
   st.subheader("4. 各データの分布を確認")
@@ -53,7 +68,7 @@ try:
   st.subheader("5. Snowflakeにデータアップロード")
   if uploaded_file is not None:
     # Snowflakeにデータアップロードするボタン
-    upload_button = st.sidebar.button('アップロードする')
+    upload_button = st.button('アップロードする')
     
     # データアップロードボタンを押した場合、Snowflakeにデータアップロード
     if upload_button:
