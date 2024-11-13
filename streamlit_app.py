@@ -45,25 +45,31 @@ try:
   st.write("#")
   st.subheader("3. ETL処理")
   if uploaded_file is not None:
-    st.write("##### 重複処理")
-    df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
-    st.dataframe(df)
+    if df.duplicated().sum().sum() = 0:
+      st.success('重複行がありません', icon="✅")
+    else:
+      st.write("##### 重複処理")
+      df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
+      st.dataframe(df)
     
     st.write("##### 欠損値処理")
-    del_button = st.button('列ごと削除')
-    zero_button = st.button('ゼロ埋め')
-    mean_button = st.button('平均値埋め')
-    if del_button:
-      etl_df = df.dropna(axis=0)
-      st.dataframe(etl_df)
-    elif zero_button:
-      etl_df = df.fillna(0)
-      st.dataframe(etl_df)    
-    elif mean_button:
-      etl_df = df.fillna(df.mean(numeric_only=True))
-      st.dataframe(etl_df)
+    if df.isnull().sum().sum() = 0:
+      st.success('欠損値がありません', icon="✅")
     else:
-      coutinue
+      del_button = st.button('列ごと削除')
+      zero_button = st.button('ゼロ埋め')
+      mean_button = st.button('平均値埋め')
+      if del_button:
+        etl_df = df.dropna(axis=0)
+        st.dataframe(etl_df)
+      elif zero_button:
+        etl_df = df.fillna(0)
+        st.dataframe(etl_df)    
+      elif mean_button:
+        etl_df = df.fillna(df.mean(numeric_only=True))
+        st.dataframe(etl_df)
+      else:
+      
     st.sidebar.write("##")
     st.sidebar.write("### ETL処理後")
     st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
