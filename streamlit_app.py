@@ -63,17 +63,15 @@ try:
       st.success('欠損値がありません', icon="✅")
     else:
       st.write("##### 欠損値処理")
-      del_button = st.button('列ごと削除')
-      zero_button = st.button('ゼロ埋め')
-      mean_button = st.button('平均値埋め')
+      miss_drop = st.selectbox("選択してください", ['列ごと削除', 'ゼロ埋め', '平均値埋め'])
       # if del_button or zero_button or mean_button:
-      if del_button:
+      if miss_drop == '列ごと削除:
         etl_df = df.dropna(axis=0)
         st.dataframe(etl_df)
-      elif zero_button:
+      elif miss_drop == 'ゼロ埋め':
         etl_df = df.fillna(0)
         st.dataframe(etl_df)    
-      elif mean_button:
+      elif miss_drop == '平均値埋め':
         etl_df = df.fillna(df.mean(numeric_only=True))
         st.dataframe(etl_df)
   
