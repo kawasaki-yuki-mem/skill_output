@@ -118,7 +118,7 @@ try:
       
       if viz_edit == '折れ線グラフ':
         st.bar_chart(etl_df[x_list].select_dtypes(include='number'), etl_df[y_list].select_dtypes(include='number'))
-    elif df is not None:
+    elif etl_df is None:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list_org = st.multiselect('x軸のカラムを選択してください'
                                    , df.columns)
