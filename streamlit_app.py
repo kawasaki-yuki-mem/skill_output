@@ -109,7 +109,21 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    st.line_chart(etl_df.select_dtypes(include='number'))
+    if etl_df is not None:
+      viz = st.selectbox("選択してください", ['折れ線グラフ'])
+      x_list = st.multiselect('x軸のカラムを選択してください'
+                                 , etl_df.columns)
+      y_list = st.multiselect('y軸のカラムを選択してください'
+                                 , etl_df.columns)
+    else:
+      viz = st.selectbox("選択してください", ['折れ線グラフ'])
+      x_list = st.multiselect('x軸のカラムを選択してください'
+                                   , etl_df.columns)
+      y_list = st.multiselect('y軸のカラムを選択してください'
+                                   , etl_df.columns)
+
+    if viz = '折れ線グラフ':
+      st.line_chart([x_list,y_list].select_dtypes(include='number'))
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
