@@ -5,6 +5,11 @@ from snowflake.snowpark import Session
 
 st.write("#")
 
+# Snowflakeの資格情報を読み取る
+with open('creds.json') as f:
+  connection_parameters = json.load(f)  
+session = Session.builder.configs(connection_parameters).create()
+
 # 1. データを読み込む
 st.subheader("1. データをアップロードする")
 uploaded_file=st.file_uploader("csvファイルをアップロードしてください。", type='csv')
@@ -108,10 +113,10 @@ try:
     
     # データアップロードボタンを押した場合、Snowflakeにデータアップロード
     if upload_button:
-      # Snowflakeの資格情報を読み取る
-      with open('creds.json') as f:
-        connection_parameters = json.load(f)  
-      session = Session.builder.configs(connection_parameters).create()
+      # # Snowflakeの資格情報を読み取る
+      # with open('creds.json') as f:
+      #   connection_parameters = json.load(f)  
+      # session = Session.builder.configs(connection_parameters).create()
     
       # Snowflakeにデータアップロード
       snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
