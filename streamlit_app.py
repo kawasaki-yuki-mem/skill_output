@@ -52,10 +52,10 @@ try:
       df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
       st.dataframe(df)
     
-    st.write("##### 欠損値処理")
     if df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
+      st.write("##### 欠損値処理")
       del_button = st.button('列ごと削除')
       zero_button = st.button('ゼロ埋め')
       mean_button = st.button('平均値埋め')
