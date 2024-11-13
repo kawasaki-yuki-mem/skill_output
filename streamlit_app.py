@@ -123,7 +123,8 @@ try:
                                    , etl_df.columns)
 
     if viz == '折れ線グラフ':
-      st.line_chart([x_list,y_list].select_dtypes(include='number'))
+      # st.line_chart([x_list,y_list].select_dtypes(include='number'))
+      st.write(x_list)
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
@@ -151,3 +152,9 @@ except:
 # 参考
 # Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
 # サイドメニュー　https://qiita.com/sumikei11/items/e3a567e69c7a86abeaa2
+# select_box　https://shoblog.iiyan.net/streamlit-selectbox/#st-toc-h-2
+# 原点　https://qiita.com/wgsbt4859/items/071de4b8cb4306c8ceec
+# 欠損値埋め　https://note.nkmk.me/python-pandas-nan-fillna/#nan-ffill-bfill
+# 重複削除　https://pythonandai.com/pandas-duplicate/
+# 
+
