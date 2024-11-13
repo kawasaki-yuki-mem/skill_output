@@ -117,7 +117,7 @@ try:
                                  , etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
-        st.bar_chart(etl_df[x_list], etl_df[y_list])
+        st.bar_chart(etl_df[x_list].select_dtypes(include='number'), etl_df[y_list].select_dtypes(include='number'))
     elif df is not None:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list_org = st.multiselect('x軸のカラムを選択してください'
@@ -126,7 +126,7 @@ try:
                                    , df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.bar_chart(df[x_list], df[y_list])
+        st.bar_chart(df[x_list].select_dtypes(include='number'), df[y_list].select_dtypes(include='number'))
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
