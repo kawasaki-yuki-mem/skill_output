@@ -10,16 +10,16 @@ st.markdown("""
 - 「データを閲覧する」をクリックしてアップロードされたデータファイルをテーブルで表示してください。
 """)
 
-def get_dataset():
-  # ファイルアップロード
-  file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
+# ファイルアップロード
+file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
 
+def view_dataset(dataset):
   # データの閲覧
   file_df = pd.read_csv(file)
   st.write(file_df)
   return file_df
 
-df = get_database()
+df = view_database(file)
 
 columns = st.selectbox("選択してください。", file_df.columns)
 
