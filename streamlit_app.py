@@ -134,7 +134,7 @@ if uploaded_file is not None:
     session = Session.builder.configs(connection_parameters).create()
   
     # Snowflakeにデータアップロード
-    snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
+    snowparkDf=session.write_pandas(etl_df,uploaded_file.name,auto_create_table = True, overwrite=True)
     st.success('アップロード完了!', icon="✅")
 # 参考
 # Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
