@@ -129,8 +129,8 @@ try:
                                  , etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
-        st.write(etl_df[x_list_edit])
-        # st.bar_chart(etl_df[x_list].select_dtypes(include='number'), etl_df[y_list].select_dtypes(include='number'))
+        # st.write(etl_df[x_list_edit])
+        st.bar_chart(etl_df[x_list_edit], etl_df[y_list_edit])
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
