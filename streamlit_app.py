@@ -170,5 +170,5 @@ except:
 # 原点　https://qiita.com/wgsbt4859/items/071de4b8cb4306c8ceec
 # 欠損値埋め　https://note.nkmk.me/python-pandas-nan-fillna/#nan-ffill-bfill
 # 重複削除　https://pythonandai.com/pandas-duplicate/
-# 
+# 豊富なグラフ　https://shoblog.iiyan.net/how-to-create-a-graph-with-streamlit/
 
