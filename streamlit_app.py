@@ -62,6 +62,8 @@ try:
     elif mean_button:
       etl_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(etl_df)
+    else:
+      coutinue
     st.sidebar.write("##")
     st.sidebar.write("### ETL処理後")
     st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
