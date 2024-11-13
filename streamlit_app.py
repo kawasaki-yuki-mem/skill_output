@@ -52,7 +52,7 @@ try:
       df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
       st.dataframe(df)
     
-    if df.isnull().sum().sum() == 0:
+    elif df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
       st.write("##### 欠損値処理")
@@ -82,7 +82,7 @@ try:
         st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
         st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
     
-    if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
+    else df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       st.sidebar.write("##")
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
