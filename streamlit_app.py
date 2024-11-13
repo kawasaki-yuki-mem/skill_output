@@ -54,7 +54,7 @@ try:
     if df.duplicated().sum().sum() == 0:
       st.success('重複行がありません', icon="✅")
     else:
-      df.drop_duplicates(subset=[st.selectbox("選択してください", [df.columns, 'no'])],keep='first', inplace=True)
+      df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
       st.dataframe(df)
 
 
