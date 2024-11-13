@@ -10,18 +10,18 @@ st.markdown("""
 - 「データを閲覧する」をクリックしてアップロードされたデータファイルをテーブルで表示してください。
 """)
 
-# ファイルアップロード
-file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
+def get_dataset():
+  # ファイルアップロード
+  file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
 
-# データを閲覧するボタン
-orgdata_view = st.sidebar.button('データを閲覧する')
-
-# データ閲覧ボタンを押した場合、データ閲覧
-if orgdata_view:
+  # データの閲覧
   file_df = pd.read_csv(file)
   st.write(file_df)
+  return file_df
 
-  columns = st.selectbox("選択してください。", file_df.columns)
+df = get_database()
+
+columns = st.selectbox("選択してください。", file_df.columns)
 
 
 
@@ -41,11 +41,8 @@ if upload_button:
     connection_parameters = json.load(f)  
   session = Session.builder.configs(connection_parameters).create()
 
-  # # アップロードするデータ
-  # file_df = pd.read_csv(file)
-
   # Snowflakeにデータアップロード
-  snowparkDf=session.write_pandas(file_df,file.name,auto_create_table = True, overwrite=True)
+  snowparkDf=session.write_pandas(df,file.name,auto_create_table = True, overwrite=True)
   st.success('アップロード完了!', icon="✅")
 
 # 参考
