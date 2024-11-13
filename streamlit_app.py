@@ -64,7 +64,6 @@ try:
       del_button = st.button('列ごと削除')
       zero_button = st.button('ゼロ埋め')
       mean_button = st.button('平均値埋め')
-      not_button = st.button('欠損値処理をしない')
       if del_button:
         etl_df = df.dropna(axis=0)
         st.dataframe(etl_df)
@@ -74,8 +73,10 @@ try:
       elif mean_button:
         etl_df = df.fillna(df.mean(numeric_only=True))
         st.dataframe(etl_df)
+      else:
+        st.write("## 欠損値処理をしない")
 
-      elif etl_df is not None:
+      if etl_df is not None:
         st.sidebar.write("##")
         st.sidebar.write("### ETL処理後")
         st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
@@ -87,9 +88,6 @@ try:
         st.sidebar.dataframe(null_etl_df)
         st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
         st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
-      
-      else:
-        st.write("## 欠損値処理をしない")
         
     if (df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0) or (df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() != 0):
       st.sidebar.write("##")
