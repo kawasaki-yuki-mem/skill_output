@@ -65,11 +65,10 @@ try:
     if df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
-      columns_drop = st.selectbox("選択してください", df.columns)
       miss_drop = st.selectbox("選択してください", ['列ごと削除', 'ゼロ埋め', '平均値埋め'])
       # if del_button or zero_button or mean_button:
       if miss_drop == '列ごと削除':
-        etl_df = df.dropna(subset=[st.selectbox("選択してください", df.columns)])
+        etl_df = df.dropna(axis=0)
         st.dataframe(etl_df)
       elif miss_drop == 'ゼロ埋め':
         etl_df = df.fillna(0)
