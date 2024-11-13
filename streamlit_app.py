@@ -54,15 +54,16 @@ try:
     zero_button = st.button('ゼロ埋め')
     mean_button = st.button('平均値埋め')
     if del_button:
-      del_df = df.dropna(axis=1)
-      st.dataframe(del_df)
+      etl_df = df.dropna(axis=1)
+      st.dataframe(etl_df)
     if zero_button:
-      zero_df = df.fillna(0)
-      st.dataframe(zero_df)    
+      etl_df = df.fillna(0)
+      st.dataframe(etl_df)    
     if mean_button:
-      mean_df = df.fillna(df.mean(numeric_only=True))
-      st.dataframe(mean_df)
-    
+      etl_df = df.fillna(df.mean(numeric_only=True))
+      st.dataframe(etl_df)
+    null_df = pd.DataFrame(elt_df.isnull().sum(), columns=["null"])
+    st.sidebar.dataframe(null_df)
     st.sidebar.write(f"### 重複行の数  :  {df.duplicated().sum().sum()}")
       
   # 4. 各データの分布/割合を確認
