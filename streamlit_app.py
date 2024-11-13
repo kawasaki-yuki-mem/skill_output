@@ -56,7 +56,7 @@ try:
       zero_df = df.fillna(0)
       st.dataframe(zero_df)    
     elif mean_button:
-      mean_df = df.fillna(df.mean())
+      mean_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(mean_df)
       
   # 4. 各データの分布/割合を確認
