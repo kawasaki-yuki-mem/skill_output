@@ -3,15 +3,13 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 
-st.title("アウトプット")
-st.write(
-    """
-    テーブル
-    """
-)
+st.markdown(""" 
+## データをテーブル表示
+アップロードされたデータファイルをテーブルで表示します。
+""")
 
 # ファイルアップロード
-file = st.sidebar.file_uploader("アクセスログをアップロードしてください。", type={"csv"})
+file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
 
 # データを閲覧するボタン
 orgdata_view = st.sidebar.button('データを閲覧する')
