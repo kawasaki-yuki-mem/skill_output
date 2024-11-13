@@ -115,12 +115,12 @@ try:
                                  , etl_df.columns)
       y_list = st.multiselect('y軸のカラムを選択してください'
                                  , etl_df.columns)
-    if df is not None:
+    else:
       viz = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list = st.multiselect('x軸のカラムを選択してください'
-                                   , etl_df.columns)
+                                   , df.columns)
       y_list = st.multiselect('y軸のカラムを選択してください'
-                                   , etl_df.columns)
+                                   , df.columns)
 
     if viz == '折れ線グラフ':
       st.scatter_chart(x_list, y_list)
