@@ -122,7 +122,7 @@ try:
       y_list = st.multiselect('y軸のカラムを選択してください'
                                    , etl_df.columns)
 
-    if viz = '折れ線グラフ':
+    if viz == '折れ線グラフ':
       st.line_chart([x_list,y_list].select_dtypes(include='number'))
     
   # 5. Snowflakeにデータアップロード
