@@ -90,7 +90,7 @@ try:
         st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
         st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
 
-    if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0
+    if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       st.sidebar.write("##")
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
