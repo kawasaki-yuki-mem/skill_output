@@ -51,58 +51,46 @@ try:
   st.subheader("3. ETL処理")
   if uploaded_file is not None:
     st.write("##### 重複処理")
-    dup_on_button = st.button('重複行を消す')
-    dup_off_button = st.button('重複行を消さない')
-
-    if dup_on_button:
-      if df.duplicated().sum().sum() == 0:
-        st.success('重複行がありません', icon="✅")
-      else:
-        df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
-        st.dataframe(df)
-        
-    if dup_off_button:
+    if df.duplicated().sum().sum() == 0:
+      st.success('重複行がありません', icon="✅")
+    else:
+      df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
       st.dataframe(df)
+
 
     st.write("##### 欠損値処理")
-    miss_on_button = st.button('欠損値を消す')
-    miss_off_button = st.button('欠損値を消さない')
-    if miss_on_button:
-      if df.isnull().sum().sum() == 0:
-        st.success('欠損値がありません', icon="✅")
-      else:
-        st.write("##### 欠損値処理")
-        del_button = st.button('列ごと削除')
-        zero_button = st.button('ゼロ埋め')
-        mean_button = st.button('平均値埋め')
-        # if del_button or zero_button or mean_button:
-        if del_button:
-          etl_df = df.dropna(axis=0)
-          st.dataframe(etl_df)
-        elif zero_button:
-          etl_df = df.fillna(0)
-          st.dataframe(etl_df)    
-        elif mean_button:
-          etl_df = df.fillna(df.mean(numeric_only=True))
-          st.dataframe(etl_df)
-    
-        if etl_df is not None:
-          st.sidebar.write("##")
-          st.sidebar.write("### ETL処理後")
-          st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
-          st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
-          # 欠損値の表示
-          st.sidebar.write("### 欠損値")
-          st.sidebar.write("各カラムの欠損値")
-          null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
-          st.sidebar.dataframe(null_etl_df)
-          st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
-          st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
+    if df.isnull().sum().sum() == 0:
+      st.success('欠損値がありません', icon="✅")
+    else:
+      st.write("##### 欠損値処理")
+      del_button = st.button('列ごと削除')
+      zero_button = st.button('ゼロ埋め')
+      mean_button = st.button('平均値埋め')
+      # if del_button or zero_button or mean_button:
+      if del_button:
+        etl_df = df.dropna(axis=0)
+        st.dataframe(etl_df)
+      elif zero_button:
+        etl_df = df.fillna(0)
+        st.dataframe(etl_df)    
+      elif mean_button:
+        etl_df = df.fillna(df.mean(numeric_only=True))
+        st.dataframe(etl_df)
+  
+      if etl_df is not None:
+        st.sidebar.write("##")
+        st.sidebar.write("### ETL処理後")
+        st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
+        st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
+        # 欠損値の表示
+        st.sidebar.write("### 欠損値")
+        st.sidebar.write("各カラムの欠損値")
+        null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
+        st.sidebar.dataframe(null_etl_df)
+        st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
+        st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
 
-    if miss_off_button:
-      st.dataframe(df)
-
-    if (df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0) or (dup_off_button and miss_off_button):
+    if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0
       st.sidebar.write("##")
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
