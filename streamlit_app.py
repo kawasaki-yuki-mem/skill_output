@@ -18,7 +18,7 @@ if file is not None:
   file_df = pd.read_csv(file)
   st.write(file_df)
 
-columns = st.selectbox("選択してください。", file_df.columns)
+  columns = st.selectbox("選択してください。", file_df.columns)
 
 
 
