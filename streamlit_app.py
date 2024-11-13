@@ -13,13 +13,9 @@ st.markdown("""
 # ファイルアップロード
 file = st.sidebar.file_uploader("データファイルをアップロードしてください。", type={"csv"})
 
-def view_dataset(dataset):
-  # データの閲覧
-  file_df = pd.read_csv(file)
-  st.write(file_df)
-  return file_df
-
-df = view_database(file)
+# データの閲覧
+file_df = pd.read_csv(file)
+st.write(file_df)
 
 columns = st.selectbox("選択してください。", file_df.columns)
 
