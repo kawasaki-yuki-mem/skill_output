@@ -115,6 +115,9 @@ try:
                                  , etl_df.columns)
       y_list_edit = st.multiselect('y軸のカラムを選択してください'
                                  , etl_df.columns)
+      
+      if viz_edit == '折れ線グラフ':
+        st.scatter_chart(etl_df[x_list], etl_df[y_list])
     elif df is not None:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
       x_list_org = st.multiselect('x軸のカラムを選択してください'
@@ -122,8 +125,8 @@ try:
       y_list_org = st.multiselect('y軸のカラムを選択してください'
                                    , df.columns)
 
-    if viz == '折れ線グラフ':
-      st.scatter_chart(x_list, y_list)
+      if viz_org == '折れ線グラフ':
+        st.scatter_chart(df[x_list], df[y_list])
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
