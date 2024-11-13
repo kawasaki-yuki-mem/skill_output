@@ -69,7 +69,7 @@ try:
       miss_drop = st.selectbox("選択してください", ['列ごと削除', 'ゼロ埋め', '平均値埋め'])
       # if del_button or zero_button or mean_button:
       if miss_drop == '列ごと削除':
-        etl_df = df.dropna(subset=[st.selectbox("選択してください", df.columns)], axis=0, inplace=True)
+        etl_df = df.dropna(subset=[st.selectbox("選択してください", df.columns)])
         st.dataframe(etl_df)
       elif miss_drop == 'ゼロ埋め':
         etl_df = df.fillna(0)
