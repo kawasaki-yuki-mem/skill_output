@@ -46,8 +46,8 @@ try:
   st.subheader("3. ETL処理")
   if uploaded_file is not None:
     st.write("##### 重複処理")
-    drop_df = df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
-    st.dataframe(drop_df)
+    df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
+    st.dataframe(df)
     
     st.write("##### 欠損値処理")
     del_button = st.button('列ごと削除')
