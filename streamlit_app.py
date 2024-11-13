@@ -28,7 +28,6 @@ try:
     st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
     st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
     # 欠損値の表示
-    st.sidebar.write("##")
     st.sidebar.write("### 欠損値")
     st.sidebar.write("各カラムの欠損値")
     null_df = pd.DataFrame(df.isnull().sum(), columns=["null"])
@@ -63,11 +62,11 @@ try:
     elif mean_button:
       etl_df = df.fillna(df.mean(numeric_only=True))
       st.dataframe(etl_df)
+    st.sidebar.write("##")
     st.sidebar.write("### ETL処理後")
     st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
     st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
     # 欠損値の表示
-    st.sidebar.write("##")
     st.sidebar.write("### 欠損値")
     st.sidebar.write("各カラムの欠損値")
     null_etl_df = pd.DataFrame(etl_df.isnull().sum(), columns=["null"])
