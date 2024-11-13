@@ -21,7 +21,7 @@ if file is not None:
   null_df = pd.DataFrame(df.isnull().sum())
   st.dataframe(null_df)
 
-  null_df_all = pd.DataFrame(df.isnull())
+  null_df_all = df.isnull()
   st.dataframe(null_df_all)
   
   
