@@ -80,7 +80,7 @@ try:
       st.sidebar.dataframe(null_etl_df)
       st.sidebar.write(f"### 合計欠損値数  :  {etl_df.isnull().sum().sum()}")
       st.sidebar.write(f"### 重複行の数  :  {etl_df.duplicated().sum().sum()}")
-    else
+    else:
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
       st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
