@@ -29,6 +29,7 @@ try:
   st.sidebar.write("# データサンプルサイズ")
   
   if uploaded_file is not None:
+    st.sidebar.write("##")
     st.sidebar.write("### ETL処理前")
     st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
     st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
