@@ -120,7 +120,7 @@ try:
                                    , df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.write(etl_df[x_list_edit])
+        st.write(df[x_list_org])
       #   st.bar_chart()
       # elif viz_org == '面グラフ':
       #   st.area_chart()
