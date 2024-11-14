@@ -112,44 +112,41 @@ try:
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
-      # obj_col_lst = st.selectbox('カラムを選択してください', [None, df.select_dtypes(include='object').columns])
+      col_lst = st.multiselect('カラムを選択してください', df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.line_chart(df[num_col_lst])
+        st.line_chart(df[col_lst])
         
       elif viz_org == '面グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
-        st.area_chart(df[num_col_lst], stack=select_stack)
+        st.area_chart(df[col_lst], stack=select_stack)
         
       elif viz_org == '棒グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        obj_col_lst = st.selectbox('カラムを選択してください', df.select_dtypes(include='object').columns)
-        st.bar_chart(df[num_col_lst], horizontal=select_horize, stack=select_stack)
+        st.bar_chart(df[col_lst], horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
-        st.scatter_chart(df[num_col_lst])
+        st.scatter_chart(df[col_lst])
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      num_col_lst = st.multiselect('カラムを選択してください', etl_df.select_dtypes(include='number').columns)
-      # obj_col_lst = st.selectbox('カラムを選択してください', [None, etl_df.select_dtypes(include='object').columns])
+      col_lst = st.multiselect('カラムを選択してください', etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
         st.line_chart(etl_df[col_lst])
         
       elif viz_edit == '面グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
-        st.area_chart(etl_df[num_col_lst], stack=select_stack)
+        st.area_chart(etl_df[col_lst], stack=select_stack)
         
       elif viz_edit == '棒グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        st.bar_chart(etl_df[num_col_lst], horizontal=select_horize, stack=select_stack)
+        st.bar_chart(etl_df[col_lst], horizontal=select_horize, stack=select_stack)
         
       elif viz_edit == '散布図':
-        st.scatter_chart(df[num_col_lst])
+        st.scatter_chart(df[col_lst])
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
