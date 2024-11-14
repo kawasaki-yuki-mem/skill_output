@@ -120,13 +120,13 @@ try:
 
       if viz_org == '折れ線グラフ':
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
-        txt_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='object').columns)
         st.line_chart(df[num_col_lst])
         
       elif viz_org == '面グラフ':
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
-        st.area_chart(df[num_col_lst], stack=select_stack)
+        obj_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='object').columns)
+        st.area_chart(df[num_col_lst], y=df[obj_col_lst], stack=select_stack)
         
       elif viz_org == '棒グラフ':
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
