@@ -109,53 +109,46 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    # st.line_chart(df.select_dtypes(include='number'))
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      # x_list_org = st.multiselect('x軸のカラムを選択してください'
-      #                              , df.columns)
-      # y_list_org = st.multiselect('y軸のカラムを選択してください'
-      #                              , df.columns)
+      num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
+      # obj_col_lst = st.selectbox('カラムを選択してください', [None, df.select_dtypes(include='object').columns])
 
       if viz_org == '折れ線グラフ':
-        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         st.line_chart(df[num_col_lst])
         
       elif viz_org == '面グラフ':
-        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
         st.area_chart(df[num_col_lst], stack=select_stack)
         
       elif viz_org == '棒グラフ':
-        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        obj_col_lst = st.selectbox('カラムを選択してください', [None,df.select_dtypes(include='object').columns])
         st.bar_chart(df[num_col_lst], horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
-        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         st.scatter_chart(df[num_col_lst])
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      # x_list_edit = st.multiselect('x軸のカラムを選択してください'
-      #                            , etl_df.columns)
-      # y_list_edit = st.multiselect('y軸のカラムを選択してください'
-      #                            , etl_df.columns)
+      num_col_lst = st.multiselect('カラムを選択してください', etl_df.select_dtypes(include='number').columns)
+      # obj_col_lst = st.selectbox('カラムを選択してください', [None, etl_df.select_dtypes(include='object').columns])
       
       if viz_edit == '折れ線グラフ':
-        col_lst = st.multiselect('カラムを選択してください', etl_df.columns)
         st.line_chart(etl_df[col_lst])
         
       elif viz_edit == '面グラフ':
+        select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
+        st.area_chart(etl_df[num_col_lst], stack=select_stack)
         
-        st.area_chart()
       elif viz_edit == '棒グラフ':
-        st.bar_chart()
+        select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
+        select_horize = st.selectbox('水平に表示しますか', [False, True])
+        st.bar_chart(etl_df[num_col_lst], horizontal=select_horize, stack=select_stack)
+        
       elif viz_edit == '散布図':
-        st.scatter_chart()
+        st.scatter_chart(df[num_col_lst])
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
