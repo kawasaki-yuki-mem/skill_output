@@ -121,7 +121,7 @@ try:
 
       if viz_org == '折れ線グラフ':
         st.write(df[x_list_org])
-      #   st.bar_chart()
+        st.line_chart([df[x_list_org], x_list_org], [df[y_list_org], y_list_org])
       # elif viz_org == '面グラフ':
       #   st.area_chart()
       # elif viz_org == '棒グラフ':
@@ -138,7 +138,7 @@ try:
       
       if viz_edit == '折れ線グラフ':
         st.write(etl_df[x_list_edit])
-      #   st.bar_chart(etl_df[x_list_edit], etl_df[y_list_edit])
+      #   st.line_chart()
       # elif viz_edit == '面グラフ':
       #   st.area_chart()
       # elif viz_edit == '棒グラフ':
