@@ -124,7 +124,7 @@ try:
       elif viz_org == '棒グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        st.bar_chart(df[col_lst] horizontal=select_horize, stack=select_stack)
+        st.bar_chart(df[col_lst], horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
         st.scatter_chart(df[col_lst])
