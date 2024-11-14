@@ -125,7 +125,8 @@ try:
       elif viz_org == '棒グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        st.bar_chart(df[num_col_lst], horizontal=select_horize, stack=select_stack)
+        obj_col_lst = st.selectbox('カラムを選択してください', [None, df.select_dtypes(include='object').columns])
+        st.bar_chart(pd.concat([df[num_col_lst],df[obj_col_lst]], axis=1), x=obj_col_lst, horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
         st.scatter_chart(df[num_col_lst])
@@ -180,6 +181,7 @@ except:
       エラーが発生しました。
       """
     )
+  
 # 参考
 # Snowflakeにデータアップロード　https://blog.streamlit.io/build-a-snowflake-data-loader-on-streamlit-in-only-5-minutes/
 # サイドメニュー　https://qiita.com/sumikei11/items/e3a567e69c7a86abeaa2
@@ -187,5 +189,5 @@ except:
 # 原点　https://qiita.com/wgsbt4859/items/071de4b8cb4306c8ceec
 # 欠損値埋め　https://note.nkmk.me/python-pandas-nan-fillna/#nan-ffill-bfill
 # 重複削除　https://pythonandai.com/pandas-duplicate/
-# 豊富なグラフ　https://shoblog.iiyan.net/how-to-create-a-graph-with-streamlit/
-
+# 豊富なグラフ　https://shoblog.iiyan.net/how-to-create-a-graph-with-streamlit/ https://docs.streamlit.io/develop/api-reference/charts
+# 要素別でカラム取得　https://note.nkmk.me/python-pandas-select-dtypes/#exclude
