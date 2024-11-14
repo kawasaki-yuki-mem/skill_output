@@ -119,23 +119,24 @@ try:
       #                              , df.columns)
 
       if viz_org == '折れ線グラフ':
-        col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
-        st.line_chart(df[col_lst])
+        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
+        txt_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='text').columns)
+        st.line_chart(df[num_col_lst])
         
       elif viz_org == '面グラフ':
-        col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
+        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
-        st.area_chart(df[col_lst], stack=select_stack)
+        st.area_chart(df[num_col_lst], stack=select_stack)
         
       elif viz_org == '棒グラフ':
-        col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
+        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        st.bar_chart(df[col_lst], horizontal=select_horize, stack=select_stack)
+        st.bar_chart(df[num_col_lst], horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
-        col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
-        st.scatter_chart(df[col_lst])
+        num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
+        st.scatter_chart(df[num_col_lst])
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
