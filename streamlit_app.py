@@ -131,8 +131,8 @@ try:
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
-        obj_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='object').columns)
-        st.bar_chart(df[num_col_lst], x=df[obj_col_lst], horizontal=select_horize, stack=select_stack)
+        obj_col_lst = st.selectbox('カラムを選択してください', [None,df.select_dtypes(include='object').columns])
+        st.bar_chart(df[num_col_lst], horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
