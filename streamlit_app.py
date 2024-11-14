@@ -122,7 +122,7 @@ try:
       if viz_org == '折れ線グラフ':
         st.write(df[x_list_org])
         # st.line_chart(pd.dataframe(df[x_list_org,y_list_org]), columns=[x_list_org, y_list_org])
-        st.line_chart(pd.dataframe(df[x_list_org],df[y_list_org]))
+        st.line_chart(pd.dataframe(df[x_list_org])
       # elif viz_org == '面グラフ':
       #   st.area_chart()
       # elif viz_org == '棒グラフ':
@@ -130,7 +130,7 @@ try:
       # elif viz_org == '散布図':
       #   st.scatter_chart()
         
-    if etl_df is not None:
+    elif etl_df is not None:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
       x_list_edit = st.multiselect('x軸のカラムを選択してください'
                                  , etl_df.columns)
