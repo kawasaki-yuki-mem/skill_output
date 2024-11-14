@@ -130,7 +130,7 @@ try:
       # elif viz_org == '散布図':
       #   st.scatter_chart()
         
-    elif etl_df is not None:
+    else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
       x_list_edit = st.multiselect('x軸のカラムを選択してください'
                                  , etl_df.columns)
