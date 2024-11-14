@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 from snowflake.snowpark import Session
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 st.write("#")
 
@@ -110,10 +110,10 @@ try:
   st.subheader("4. 各データの分布を確認")
 
   if uploaded_file is not None:
-    # st.line_chart(df.select_dtypes(include='number'))
-    fig, ax = plt.subplots()
-    ax.hist(df, bins=20)
-    st.pyplot(fig)
+    st.line_chart(df.select_dtypes(include='number'))
+    # fig, ax = plt.subplots()
+    # ax.hist(df, bins=20)
+    # st.pyplot(fig)
     # if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
     #   viz_org = st.selectbox("選択してください", ['折れ線グラフ'])
     #   x_list_org = st.multiselect('x軸のカラムを選択してください'
