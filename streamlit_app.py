@@ -124,7 +124,8 @@ try:
         
       elif viz_org == '面グラフ':
         col_lst = st.multiselect('カラムを選択してください', df.columns)
-        st.area_chart(df[col_lst], stack="center")
+        stack = st.multiselect('スタックを選択してください', ['None', 'True', 'False', 'normalize', 'center'])
+        st.area_chart(df[col_lst], stack=stack)
         
       elif viz_org == '棒グラフ':
         st.bar_chart()
