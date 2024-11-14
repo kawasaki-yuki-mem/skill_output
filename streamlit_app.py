@@ -110,7 +110,6 @@ try:
 
   if uploaded_file is not None:
     # st.line_chart(df.select_dtypes(include='number'))
-
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
@@ -120,32 +119,36 @@ try:
       #                              , df.columns)
 
       if viz_org == '折れ線グラフ':
-        col_lst = st.multiselect('カラムを選択してください'
-                                   , df.columns)
+        col_lst = st.multiselect('カラムを選択してください', df.columns)
         st.line_chart(df[col_lst])
-      # elif viz_org == '面グラフ':
-      #   st.area_chart()
-      # elif viz_org == '棒グラフ':
-      #   st.bar_chart()
-      # elif viz_org == '散布図':
-      #   st.scatter_chart()
+        
+      elif viz_org == '面グラフ':
+        col_lst = st.multiselect('カラムを選択してください', df.columns)
+        st.area_chart(df[col_lst])
+        
+      elif viz_org == '棒グラフ':
+        st.bar_chart()
+      elif viz_org == '散布図':
+        st.scatter_chart()
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      x_list_edit = st.multiselect('x軸のカラムを選択してください'
-                                 , etl_df.columns)
-      y_list_edit = st.multiselect('y軸のカラムを選択してください'
-                                 , etl_df.columns)
+      # x_list_edit = st.multiselect('x軸のカラムを選択してください'
+      #                            , etl_df.columns)
+      # y_list_edit = st.multiselect('y軸のカラムを選択してください'
+      #                            , etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
-        st.write(etl_df[x_list_edit])
-      #   st.line_chart()
-      # elif viz_edit == '面グラフ':
-      #   st.area_chart()
-      # elif viz_edit == '棒グラフ':
-      #   st.bar_chart()
-      # elif viz_edit == '散布図':
-      #   st.scatter_chart()
+        col_lst = st.multiselect('カラムを選択してください', etl_df.columns)
+        st.line_chart(etl_df[col_lst])
+        
+      elif viz_edit == '面グラフ':
+        
+        st.area_chart()
+      elif viz_edit == '棒グラフ':
+        st.bar_chart()
+      elif viz_edit == '散布図':
+        st.scatter_chart()
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
