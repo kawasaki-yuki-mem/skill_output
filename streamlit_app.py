@@ -114,15 +114,15 @@ try:
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      x_list_org = st.multiselect('x軸のカラムを選択してください'
-                                   , df.columns)
-      y_list_org = st.multiselect('y軸のカラムを選択してください'
-                                   , df.columns)
+      # x_list_org = st.multiselect('x軸のカラムを選択してください'
+      #                              , df.columns)
+      # y_list_org = st.multiselect('y軸のカラムを選択してください'
+      #                              , df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.write(df[x_list_org])
-        # st.line_chart(pd.dataframe(df[x_list_org,y_list_org]), columns=[x_list_org, y_list_org])
-        st.line_chart(df[x_list_org])
+        col_lst = st.multiselect('カラムを選択してください'
+                                   , df.columns)
+        st.line_chart(df[col_lst])
       # elif viz_org == '面グラフ':
       #   st.area_chart()
       # elif viz_org == '棒グラフ':
