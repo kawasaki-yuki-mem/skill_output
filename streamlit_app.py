@@ -120,7 +120,7 @@ try:
                                    , df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.write(df[x_list_org])
+        # st.write(df[x_list_org])
         st.line_chart(df.select_dtypes(include='number'), df[x_list_org], df[y_list_org])
       # elif viz_org == '面グラフ':
       #   st.area_chart()
