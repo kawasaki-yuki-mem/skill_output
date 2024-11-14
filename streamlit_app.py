@@ -126,7 +126,7 @@ try:
         select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
         select_horize = st.selectbox('水平に表示しますか', [False, True])
         obj_col_lst = st.selectbox('カラムを選択してください', [None, df.select_dtypes(include='object').columns])
-        st.bar_chart(pd.concat([df[num_col_lst],df[obj_col_lst]], axis=1), x=obj_col_lst, horizontal=select_horize, stack=select_stack)
+        st.bar_chart([df[num_col_lst],df[obj_col_lst], x=obj_col_lst, horizontal=select_horize, stack=select_stack)
       
       elif viz_org == '散布図':
         st.scatter_chart(df[num_col_lst])
