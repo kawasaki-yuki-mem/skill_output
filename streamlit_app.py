@@ -120,7 +120,7 @@ try:
                                    , df.columns)
 
       if viz_org == '折れ線グラフ':
-        st.write(df[x_list_org,y_list_org])
+        st.write(df[x_list_org], df[y_list_org])
         # st.line_chart(pd.dataframe(df[x_list_org,y_list_org]), columns=[x_list_org, y_list_org])
         st.line_chart(df[x_list_org,y_list_org])
       # elif viz_org == '面グラフ':
