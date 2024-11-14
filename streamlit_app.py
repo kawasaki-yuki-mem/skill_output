@@ -120,7 +120,7 @@ try:
 
       if viz_org == '折れ線グラフ':
         num_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='number').columns)
-        txt_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='text').columns)
+        txt_col_lst = st.multiselect('カラムを選択してください', df.select_dtypes(include='object').columns)
         st.line_chart(df[num_col_lst])
         
       elif viz_org == '面グラフ':
