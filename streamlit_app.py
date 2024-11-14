@@ -60,9 +60,16 @@ try:
       df.drop_duplicates(subset=[st.selectbox("選択してください", df.columns)],keep='first', inplace=True)
       st.dataframe(df)
 
+    st.write("##### データ抽出")
+    if st.selectbox("選択してください", ['はい', 'いいえ']) == 'いいえ':
+      st.success('そのままのデータを使用します', icon="✅")
+
+    else:
+      df = df[st.multiselect('抽出するカラムを選択してください', df.columns)]
+      st.dataframe(df)
 
     st.write("##### 欠損値処理")
-    if df.isnull().sum().sum() == 0:
+    if df.isnull().sum().sum() == 0 or df.isnull().sum().sum() == 0:
       st.success('欠損値がありません', icon="✅")
     else:
       miss_drop = st.selectbox("選択してください", ['列ごと削除', 'ゼロ埋め', '平均値埋め'])
