@@ -132,7 +132,7 @@ try:
         st.pyplot(plt)
       
       elif viz_org == '散布図':
-        plt.scatter(df[xcol_lst], df[ycol_lst])
+        plt.scatter(df[xcol_lst], df[ycol_lst], cmap='Paired')
         st.pyplot(plt)
         
       elif viz_org == 'ヒストグラム':
@@ -141,8 +141,8 @@ try:
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '棒グラフ', '散布図', 'ヒストグラム'])
-      xcol_lst = st.multiselect('カラムを選択してください', etl_df.columns)
-      ycol_lst = st.multiselect('カラムを選択してください', etl_df.columns)
+      xcol_lst = st.multiselect('xカラムを選択してください', etl_df.columns)
+      ycol_lst = st.multiselect('yカラムを選択してください', etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
         plt.plot(etl_df[xcol_lst], etl_df[ycol_lst])
@@ -153,7 +153,7 @@ try:
         st.pyplot(plt)
         
       elif viz_edit == '散布図':
-        plt.scatter(etl_df[xcol_lst], etl_df[ycol_lst])
+        plt.scatter(etl_df[xcol_lst], etl_df[ycol_lst], cmap='Paired')
         st.pyplot(plt)
 
       elif viz_edit == 'ヒストグラム':
