@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 from snowflake.snowpark import Session
+import matplotlib.pyplot as plt
 
 st.write("#")
 
