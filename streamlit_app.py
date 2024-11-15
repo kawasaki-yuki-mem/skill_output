@@ -137,7 +137,7 @@ try:
         st.pyplot(plt)
         
       elif viz_org == 'ヒストグラム':
-        plt.hist(df[xcol_lst], df[ycol_lst])
+        plt.hist([df[xcol_lst], df[ycol_lst]])
         st.pyplot(plt)
         
     else:
