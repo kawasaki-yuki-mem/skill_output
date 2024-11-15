@@ -141,23 +141,25 @@ try:
         st.pyplot(plt)
         
     else:
-      viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      col_lst = st.multiselect('カラムを選択してください', etl_df.columns)
+      viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '棒グラフ', '散布図', 'ヒストグラム'])
+      xcol_lst = st.multiselect('カラムを選択してください', etl_df.columns)
+      ycol_lst = st.multiselect('カラムを選択してください', etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
-        st.line_chart(etl_df[col_lst])
-        
-      elif viz_edit == '面グラフ':
-        select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
-        st.area_chart(etl_df[col_lst], stack=select_stack)
+        plt.plot(etl_df[xcol_lst], etl_df[ycol_lst])
+        st.pyplot(plt)
         
       elif viz_edit == '棒グラフ':
-        select_stack = st.selectbox('スタックを選択してください', [None, False, "layered", "normalize", "center"])
-        select_horize = st.selectbox('水平に表示しますか', [False, True])
-        st.bar_chart(etl_df[col_lst], horizontal=select_horize, stack=select_stack)
+        plt.bar(etl_df[xcol_lst], etl_df[ycol_lst])
+        st.pyplot(plt)
         
       elif viz_edit == '散布図':
-        st.scatter_chart(df[col_lst])
+        plt.scatter(etl_df[xcol_lst], etl_df[ycol_lst])
+        st.pyplot(plt)
+
+      elif viz_edit == 'ヒストグラム':
+        plt.hist(etl_df[xcol_lst], etl_df[ycol_lst])
+        st.pyplot(plt)
     
   # 5. Snowflakeにデータアップロード
   st.write("#")
