@@ -136,7 +136,7 @@ try:
         st.pyplot(plt)
         
       elif viz_org == 'ヒストグラム':
-        plt.hist(df[xcol_lst], df[ycol_lst])
+        plt.hist(df[xcol_lst], df[ycol_lst], bin=10)
         st.pyplot(plt)
         
     else:
@@ -157,7 +157,7 @@ try:
         st.pyplot(plt)
 
       elif viz_edit == 'ヒストグラム':
-        plt.hist(etl_df[xcol_lst], etl_df[ycol_lst])
+        plt.hist(etl_df[xcol_lst], etl_df[ycol_lst], bin=10)
         st.pyplot(plt)
     
   # 5. Snowflakeにデータアップロード
