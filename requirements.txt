@@ -3,3 +3,4 @@ snowflake_snowpark-python
 streamlit
 pandas
 matplotlib
+seaborn
