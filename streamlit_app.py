@@ -98,7 +98,7 @@ try:
 
       # ETL処理後のデータ情報、欠損値、重複の表示
       if etl_df is not None:
-        st.sidebar.write("###")
+        # st.sidebar.write("###")
         st.sidebar.write("### ETL処理後")
         st.sidebar.write(f"### サンプルサイズ:  {etl_df.shape[0]}")
         st.sidebar.write(f"### カラム数     :  {etl_df.shape[1]}")
@@ -112,7 +112,7 @@ try:
 
     # データ情報、欠損値、重複の表示
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
-      st.sidebar.write("##")
+      # st.sidebar.write("###")
       st.sidebar.write("### ETL処理後")
       st.sidebar.write(f"### サンプルサイズ:  {df.shape[0]}")
       st.sidebar.write(f"### カラム数     :  {df.shape[1]}")
