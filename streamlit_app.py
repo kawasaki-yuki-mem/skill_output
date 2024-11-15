@@ -132,7 +132,7 @@ try:
         st.pyplot(plt)
       
       elif viz_org == '散布図':
-        plt.scatter(df[xcol_lst], df[ycol_lst], cmap='Paired')
+        plt.scatter(df[xcol_lst], df[ycol_lst], c=matplotlib.cm.tab20(len(xcol_lst)))
         st.pyplot(plt)
         
       elif viz_org == 'ヒストグラム':
