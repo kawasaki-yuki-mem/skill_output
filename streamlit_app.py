@@ -130,6 +130,8 @@ try:
   st.subheader("4. 各データの分布を確認")
   
   if uploaded_file is not None:
+
+    # ETL処理をしていないデータ
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       
       # 表示するグラフとカラムを選択
