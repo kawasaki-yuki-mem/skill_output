@@ -121,10 +121,13 @@ try:
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '面グラフ', '棒グラフ', '散布図'])
-      col_lst = st.multiselect('カラムを選択してください', df.columns)
+      xcol_lst = st.multiselect('xカラムを選択してください', df.columns)
+      ycol_lst = st.multiselect('yカラムを選択してください', df.columns)
   
       if viz_org == '折れ線グラフ':
-        st.line_chart(df[col_lst])
+        # st.line_chart(df[col_lst])
+        plt.plot(df[xcol_lst], df[ycol_lst])
+        st.pyplot(plt)
         
       elif viz_org == '面グラフ':
         select_stack = st.selectbox('スタックを選択してください', [None, True, "normalize", "center"])
