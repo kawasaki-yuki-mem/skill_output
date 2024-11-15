@@ -188,11 +188,6 @@ try:
     
     # データアップロードボタンを押した場合、Snowflakeにデータアップロード
     if upload_button:
-      
-      # # Snowflakeの資格情報を読み取る
-      # with open('creds.json') as f:
-      #   connection_parameters = json.load(f)  
-      # session = Session.builder.configs(connection_parameters).create()
   
       # ETL処理をしていないデータをSnowflakeにデータアップロード
       if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
@@ -203,6 +198,7 @@ try:
       elif etl_df is not None:
         snowparkDf=session.write_pandas(etl_df, upload_data, auto_create_table = True, overwrite=True)
         st.success('アップロード完了!', icon="✅")
+# 例外処理
 except:
     st.error(
       """
