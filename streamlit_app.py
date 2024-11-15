@@ -3,6 +3,7 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 import matplotlib.pyplot as plt
+import japanize_matplotlib
 
 st.write("#")
 
@@ -120,8 +121,8 @@ try:
   
     if df.duplicated().sum().sum() == 0 and df.isnull().sum().sum() == 0:
       viz_org = st.selectbox("選択してください", ['折れ線グラフ', '棒グラフ', '散布図', 'ヒストグラム'])
-      xcol_lst = st.multiselect('xカラムを選択してください', df.columns)
-      ycol_lst = st.multiselect('yカラムを選択してください', df.columns)
+      xcol_lst = st.selectbox('xカラムを選択してください', df.columns)
+      ycol_lst = st.selectbox('yカラムを選択してください', df.columns)
   
       if viz_org == '折れ線グラフ':
         plt.plot(df[xcol_lst], df[ycol_lst])
@@ -132,7 +133,7 @@ try:
         st.pyplot(plt)
       
       elif viz_org == '散布図':
-        plt.scatter(df[xcol_lst], df[ycol_lst], c=matplotlib.cm.tab20(len(xcol_lst)))
+        plt.scatter(df[xcol_lst], df[ycol_lst])
         st.pyplot(plt)
         
       elif viz_org == 'ヒストグラム':
@@ -141,8 +142,8 @@ try:
         
     else:
       viz_edit = st.selectbox("選択してください", ['折れ線グラフ', '棒グラフ', '散布図', 'ヒストグラム'])
-      xcol_lst = st.multiselect('xカラムを選択してください', etl_df.columns)
-      ycol_lst = st.multiselect('yカラムを選択してください', etl_df.columns)
+      xcol_lst = st.selectbox('xカラムを選択してください', etl_df.columns)
+      ycol_lst = st.selectbox('yカラムを選択してください', etl_df.columns)
       
       if viz_edit == '折れ線グラフ':
         plt.plot(etl_df[xcol_lst], etl_df[ycol_lst])
@@ -153,7 +154,7 @@ try:
         st.pyplot(plt)
         
       elif viz_edit == '散布図':
-        plt.scatter(etl_df[xcol_lst], etl_df[ycol_lst], cmap='Paired')
+        plt.scatter(etl_df[xcol_lst], etl_df[ycol_lst])
         st.pyplot(plt)
 
       elif viz_edit == 'ヒストグラム':
