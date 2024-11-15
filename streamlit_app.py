@@ -3,7 +3,6 @@ import pandas as pd
 import json
 from snowflake.snowpark import Session
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 st.write("#")
 
